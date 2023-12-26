@@ -44,6 +44,18 @@ namespace Application.Services
             return producerId;
         }
 
+        public void DeleteArtist(int id)
+        {
+            var artist = _repository.GetUserById(id);
+            _repository.DeleteUser(artist);
+        }
+
+        public void DeleteProducer(int id)
+        {
+            var producer = _repository.GetUserById(id);
+            _repository.DeleteUser(producer);
+        }
+
         public List<ArtistRequest> GetAllArtists()
         {
             var artists = _repository.GettAllUsers();
@@ -109,32 +121,32 @@ namespace Application.Services
 
         public void UpdateArtist(ArtistRequest artist, int id)
         {
-            var userModel = new UserModel
-            {
-                Id = id,
-                Email = artist.Email.EmailAddress,
-                LastName = artist.LastName,
-                Name = artist.Name,
-                Password = artist.Password.Password,
-                Type = (int)UserType.Artist
-            };
+            var getArtist = _repository.GetUserById(id);
+            if (getArtist == default) { throw new Exception("nao existe esse usuario"); }
 
-            _repository.UpdateUser(userModel);
+            getArtist.Id = id;
+            getArtist.Email = artist.Email.EmailAddress;
+            getArtist.LastName = artist.LastName;
+            getArtist.Password = artist.Password.Password;
+            getArtist.Name = artist.Name;
+            getArtist.Type = (int)UserType.Artist;
+
+            _repository.UpdateUser(getArtist);
         }
 
         public void UpdateProducer(ProducerRequest producer, int id)
         {
-            var userModel = new UserModel
-            {
-                Id = id,
-                Email = producer.Email.EmailAddress,
-                LastName = producer.LastName,
-                Name = producer.Name,
-                Password = producer.Password.Password,
-                Type = (int)UserType.Artist
-            };
+            var getProducer = _repository.GetUserById(id);
+            if (getProducer == default) { throw new Exception("nao existe esse usuario"); }
 
-            _repository.UpdateUser(userModel);
+            getProducer.Id = id;
+            getProducer.Email = producer.Email.EmailAddress;
+            getProducer.LastName = producer.LastName;
+            getProducer.Password = producer.Password.Password;
+            getProducer.Name = producer.Name;
+            getProducer.Type = (int)UserType.Artist;
+
+            _repository.UpdateUser(getProducer);
         }
     }
 }

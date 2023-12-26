@@ -12,6 +12,7 @@ namespace Application.Services
         List<UserRequest> GetAllUsers();
         List<ArtistRequest> GetAllArtists();
         List<ProducerRequest> GetAllProducers(); 
-        
+        void DeleteArtist(int id);  
+        void DeleteProducer(int id);
     }
 }
