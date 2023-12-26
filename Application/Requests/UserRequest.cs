@@ -1,13 +1,13 @@
 ﻿using Application.Requests.Enums;
+using Application.Requests.ValueObjects;
 
-namespace Application.Requests
+namespace Application.Requests;
+
+public class UserRequest
 {
-    public class UserRequest
-    {
-        public string Email { get; set; } = string.Empty;
-        public string Password { get; set; } = string.Empty;
-        public string Name { get; set; } = string.Empty;
-        public string LastName { get; set; } = string.Empty;
-        public UserType Type { get; set; }
-    }
+    public EmailValue Email { get; set; }
+    public PasswordValue Password { get; set; }
+    public string Name { get; set; } = string.Empty;
+    public string LastName { get; set; } = string.Empty;
+    public UserType Type { get; set; }
 }

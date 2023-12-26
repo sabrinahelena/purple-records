@@ -1,5 +1,6 @@
 ﻿using Application.Requests;
 using Application.Requests.Enums;
+using Application.Requests.ValueObjects;
 using Application.Services;
 using Infrastructure;
 using Infrastructure.Repositories;
@@ -8,12 +9,12 @@ namespace PurpleRecords
 {
     public class Program
     {
-        private static IPurpleRecordsService _service;
+        private static IUserService _service;
         static Program()
         {
             var dbContext = new PurpleRecordsContext();
             var repository = new PurpleRecordsRepository(dbContext);
-            _service = new PurpleRecordsService(repository);
+            _service = new UserService(repository);
         }
 
         static void Main(string[] args)
@@ -41,8 +42,8 @@ namespace PurpleRecords
                 ArtistName = artistName,
                 Name = name,
                 LastName = lastName,
-                Email = email,
-                Password = password
+                Email = new EmailValue(email),
+                Password = new PasswordValue(password)
             };
 
             int id = _service.CreateArtist(artista);

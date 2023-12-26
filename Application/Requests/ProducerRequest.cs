@@ -1,6 +1,5 @@
-﻿namespace Application.Requests
+﻿namespace Application.Requests;
+
+public class ProducerRequest : UserRequest
 {
-    public class ProducerRequest : UserRequest
-    {
-    }
 }
