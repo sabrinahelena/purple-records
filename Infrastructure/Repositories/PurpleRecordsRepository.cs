@@ -35,16 +35,19 @@ public class PurpleRecordsRepository : IPurpleRecordsRepository
     public void DeleteAlbum(AlbumModel album)
     {
         _context.Albums.Remove(album);
+        SaveChanges();
     }
 
     public void DeleteMusic(MusicModel music)
     {
-        _context.Musics.Remove(music); 
+        _context.Musics.Remove(music);
+        SaveChanges();
     }
 
     public void DeleteUser(UserModel user)
     {
         _context.Users.Remove(user);
+        SaveChanges();
     }
 
     public AlbumModel GetAlbumById(int id)
@@ -80,15 +83,23 @@ public class PurpleRecordsRepository : IPurpleRecordsRepository
     public void UpdateAlbum(AlbumModel album)
     {
         _context.Albums.Update(album);
+        SaveChanges();
     }
 
     public void UpdateMusic(MusicModel music)
     {
         _context.Musics.Update(music);
+        SaveChanges();
     }
 
     public void UpdateUser(UserModel user)
     {
         _context.Users.Update(user);
+        SaveChanges();
+    }
+
+    public void SaveChanges()
+    {
+        _context.SaveChanges();
     }
 }
